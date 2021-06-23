@@ -1,1 +1,1 @@
-# ProductSDC
+# SDC
