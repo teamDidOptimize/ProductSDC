@@ -8,6 +8,13 @@ const app = express();
 const indexRouter = require('./routes/index.js');
 const productsRouter = require('./routes/product.js');
 
+// setup middleware
+app.use(express.urlencoded({
+  extended: false
+}));
+app.use(express.json());
+app.use(compression());
+
 app.use(express.static('public'));
 
 // setup database connections
