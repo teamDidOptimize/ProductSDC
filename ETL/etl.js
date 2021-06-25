@@ -1,6 +1,6 @@
-const Product = require('./models/product.js');
-const Related = require('./models/related.js');
-const db = require('./server.js');
+const Product = require('../models/product.js');
+const Related = require('../models/related.js');
+const db = require('../server.js');
 
 const etlRelated = async () => {
   // let doc = new Product;

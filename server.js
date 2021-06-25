@@ -5,7 +5,8 @@ if (process.env.NODE_ENV !== 'production') {
 // setup express server
 const express = require('express');
 const app = express();
-const indexRouter = require('./routes/index');
+const indexRouter = require('./routes/index.js');
+const productsRouter = require('./routes/product.js');
 
 app.use(express.static('public'));
 
@@ -19,6 +20,7 @@ db.once('open', () => console.log('Connected to Mongoose'));
 
 // set initial routes
 app.use('/', indexRouter);
+app.use('/products', productsRouter);
 
 // setup port listening
 app.listen(process.env.PORT || 3000);
