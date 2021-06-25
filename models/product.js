@@ -8,62 +8,13 @@ const ProductSchema = new Schema({
     type: Number,
     unique: true,
   },
-  campus: {
-    type: String,
-  },
-  slogan: {
-    type: String,
-  },
-  category: {
-    type: String,
-  },
-  default_price: {
-    type: Number,
-  },
-  features: {
-    type: [
-      {
-        feature: String,
-        value: String
-      }
-    ],
-  },
-  styles: {
-    type: [
-      {
-        style_id: { type: Number, unique: true },
-        name: String,
-        original_price: {
-          type: mongoose.Decimal128,
-          set: v => {
-            return new mongoose.Types.Decimal128(v.toFixed(2));
-          },
-        },
-        sale_price: {
-          type: mongoose.Decimal128,
-          set: v => {
-            return new mongoose.Types.Decimal128(v.toFixed(2));
-          },
-        },
-        'default?': Boolean,
-        photos: [
-          {
-            thumbnailURL: String,
-            url: String
-          }
-        ],
-        skus: {
-          id: {
-            quantity: Number,
-            size: String
-          }
-        }
-      }
-    ],
-  },
-  related: {
-    type: [Number],
-  }
+  campus: String,
+  slogan: String,
+  category: String,
+  default_price: Number,
+  features: Array,
+  styles: Array,
+  related: Number
 }, {
   timestamps: {
     createdAt: 'created_at',

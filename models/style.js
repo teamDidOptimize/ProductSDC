@@ -10,12 +10,12 @@ const StylesSchema = new Schema({
   },
   productId: Number,
   name: String,
-  sale_price: String,
+  sale_price: Number,
   original_price: Number,
   default_style: Boolean
 });
 
 // product model
-const Styles = mongoose.model('style', StylesShema);
+const Styles = mongoose.model('style', StylesSchema);
 
 module.exports = Styles;

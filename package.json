@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/JoeyRivera01/SDC#readme",
   "dependencies": {
+    "compression": "^1.7.4",
     "express": "^4.17.1",
     "mongoose": "^5.12.14"
   },

@@ -7,6 +7,7 @@ const express = require('express');
 const app = express();
 const indexRouter = require('./routes/index.js');
 const productsRouter = require('./routes/product.js');
+const compression = require('compression');
 
 // setup middleware
 app.use(express.urlencoded({
