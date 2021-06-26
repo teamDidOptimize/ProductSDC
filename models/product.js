@@ -14,7 +14,7 @@ const ProductSchema = new Schema({
   default_price: Number,
   features: Array,
   styles: Array,
-  related: Number,
+  related: Array,
   created_at: Date,
   updated_at: Date
 });
