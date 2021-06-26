@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 const express = require('express');
-const productsRouter = express.Router();
+const productsRouter = express.Router({ mergeParams: true });
 const Product = require('../models/product.js');
 const Styles = require('../models/style.js');
 
@@ -21,7 +21,7 @@ productsRouter
   .route('/:product_id')
   .get(async (req, res) => {
     let product_id = req.params.product_id;
-    let query = { id: id };
+    let query = { id: product_id };
     let product = await Product.findOne(query);
     res.status(200).json(product);
   });
@@ -31,7 +31,7 @@ productsRouter
   .get(async (req, res) => {
     let product_id = req.params.product_id;
     let query = { id: id };
-    let styles = await Styles.findOne(query);
+    let styles = await Product.findOne(query, { styles: 1});
     res.status(200).json(styles);
   });
 

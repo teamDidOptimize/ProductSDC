@@ -14,12 +14,9 @@ const ProductSchema = new Schema({
   default_price: Number,
   features: Array,
   styles: Array,
-  related: Number
-}, {
-  timestamps: {
-    createdAt: 'created_at',
-    updatedAt: 'updated_at'
-  }
+  related: Number,
+  created_at: Date,
+  updated_at: Date
 });
 
 // product model

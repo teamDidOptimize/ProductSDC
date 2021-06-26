@@ -1,9 +1,8 @@
 const express = require('express');
-const router = express.Router();
+const indexRouter = express.Router();
 
-router.get('/', (req, res) => {
-
-  res.status(200).send('ADD SOME ROUTES');
+indexRouter.get('/', (req, res) => {
+  res.status(200).send('IT WORKED!');
 });
 
-module.exports = router;
+module.exports = indexRouter;
