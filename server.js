@@ -33,5 +33,4 @@ app.use('/products', productsRouter);
 // setup port listening
 app.listen(process.env.PORT || 3000);
 
-
 module.export = db;
