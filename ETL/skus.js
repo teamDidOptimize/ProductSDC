@@ -11,15 +11,15 @@ async function run() {
     const styles = database.collection("styles");
     const skus = database.collection("skus");
 
-    // 1000011
-    for (var i = 1; i < 5; i++) {
-      // create a filter for a product to update
-      const filter = { productId: i }
+    // 4660354
+    for (var i = 1; i < 4660354; i++) {
+      // create a filter for a style to update
+      const filter = { style_id: i }
       // this option instructs the method to not create a document if no documents match the filter
       const options = { upsert: false, autoIndex: false };
 
       let skusObj = {};
-      let cursor = await skus.find({ ' styleId': filter.productId});
+      let cursor = await skus.find({ ' styleId': filter.style_id});
       await cursor.forEach((doc) => {
         let val = doc['sku_id'];
         skusObj[val] = {
@@ -35,6 +35,7 @@ async function run() {
         },
       };
 
+      // query a style and update it with a nested skus property
       const result = await styles.updateOne(filter, updateDoc, options);
       console.log(
         `i is ${i}, ${result.matchedCount} document(s) matched the filter, updated ${result.modifiedCount} document(s)`,
