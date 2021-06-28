@@ -11,7 +11,7 @@ productsRouter
   .route('/')
   .get(async (req, res) => {
     let query = {};
-    let products = await Product.find(query).limit(5); // update limit to be dynamic
+    let products = await Product.find(query, {id: 1, name: 1, slogan: 1, description: 1, category: 1, defaut_price: 1}).limit(5); // update limit to be dynamic
     res.set({
       'Access-Control-Allow-Origin': '*'
     });
@@ -23,7 +23,7 @@ productsRouter
   .get(async (req, res) => {
     let product_id = req.params.product_id;
     let query = { id: product_id };
-    let product = await Product.findOne(query);
+    let product = await Product.findOne(query, {id: 1, name: 1, slogan: 1, description: 1, category: 1, defaut_price: 1, features: 1});
     res.set({
       'Access-Control-Allow-Origin': '*'
     });
