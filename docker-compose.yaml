@@ -1,0 +1,31 @@
+version: '3'
+services:
+  server1:
+    build: service/
+    ports:
+      - "3001:3000"
+
+    server2:
+      build: service/
+      ports:
+        - "3002:3000"
+
+    server3:
+      build: service/
+      ports:
+        - "3003:3000"
+
+    server4:
+      build: service/
+      ports:
+        - "3004:3000"
+
+    loader:
+      build: loader/
+      ports:
+        - "8080:80"
+      depends_on:
+        - server_one
+        - server_two
+        - server_three
+        - server_four
