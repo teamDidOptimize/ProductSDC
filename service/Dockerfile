@@ -1,4 +1,2 @@
-FROM node:alpine
-COPY . /service
-WORKDIR /service
-CMD node server.js
+FROM node:14.17-alpine
+WORKDIR /
