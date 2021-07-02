@@ -1,14 +1,3 @@
-if (process.env.NODE_ENV !== 'production') {
-  require('dotenv').config();
-}
-
-// setup express server
-const express = require('express');
-const app = express();
-const productsRouter = require('./routes/product.js');
-const compression = require('compression');
-// const morgan = require('morgan');
-
 // setup middleware
 app.use(express.urlencoded({
   extended: false
@@ -19,10 +8,14 @@ app.use(compression());
 
 app.use(express.static('public'));
 
+app.use('/loaderio-4fbca929fd9abf7d5919d8a7ef6b2210.txt', (req, res) => {
+  res.status(200).send('loaderio-4fbca929fd9abf7d5919d8a7ef6b2210');
+});
+
 // setup database connections
 const mongoose = require('mongoose');
 const databaseName = 'productSDC';
-mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true, dbName: databaseName, server: {reconnectTries: Number.MAX_VALUE}});
+mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true, dbName: databaseName, user: process.env.DB_USER, pass: process.env.DB_PASS, useCreateIndex: true });
 const db = mongoose.connection;
 db.on('error', error => console.error(error));
 db.once('open', () => console.log('Connected to Mongoose'));
