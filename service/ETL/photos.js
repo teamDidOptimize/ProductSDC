@@ -9,32 +9,35 @@ async function run() {
 
     const database = client.db("productSDC");
     const styles = database.collection("styles");
-    const skus = database.collection("skus");
+    const photos = database.collection("photos");
 
-    // 1000011
-    for (var i = 1; i < 5; i++) {
-      // create a filter for a product to update
-      const filter = { productId: i }
+    // 4660354
+    for (var i = 1; i < 4660354; i++) {
+      // create a filter for a style to update
+      const filter = { style_id: i }
       // this option instructs the method to not create a document if no documents match the filter
       const options = { upsert: false, autoIndex: false };
 
-      let skusObj = {};
-      let cursor = await skus.find({ ' styleId': filter.productId});
+      let photosArray = [];
+      let cursor = await photos.find({ ' styleId': filter.style_id});
       await cursor.forEach((doc) => {
-        let val = doc['sku_id'];
-        skusObj[val] = {
-          'size': doc[' size'],
-          'quantity': doc[' quantity']
-        }
+        let photoObj = {
+          url: doc[' url'],
+          thumbnail_url: doc[' thumbnail_url']
+        };
+        photosArray.push(photoObj);
       });
 
-      // create a column that sets the related items of the product
+      // console.log(photosArray);
+
+      // create a column that sets the photos of the style
       const updateDoc = {
         $set: {
-          'skus': skusObj
+          'photos': photosArray
         },
       };
 
+      // query a style and update it with a nested skus property
       const result = await styles.updateOne(filter, updateDoc, options);
       console.log(
         `i is ${i}, ${result.matchedCount} document(s) matched the filter, updated ${result.modifiedCount} document(s)`,

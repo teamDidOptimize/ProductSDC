@@ -1,0 +1,111 @@
+version: '3.8'
+services:
+  #  server1:
+  #   build: service/
+  #   ports:
+  #     - "3001:3000"
+
+  #  server2:
+  #    build: service/
+  #    ports:
+  #      - "3002:3000"
+
+  #  server3:
+  #    build: service/
+  #    ports:
+  #      - "3003:3000"
+
+  #  server4:
+  #    build: service/
+  #    ports:
+  #      - "3004:3000"
+
+  #  loader:
+  #    build: loader/
+  #    ports:
+  #      - "80:80"
+  #    depends_on:
+  #      - server1
+  #      - server2
+  #      - server3
+  #      - server4
+
+    mongors1n1:
+      container_name: mongors1n1
+      image: mongo
+      command: mongod --shardsvr --replSet mongors1 --dbpath /data/db --port 27017
+      ports:
+        - 27017:27017
+      expose:
+        - "27017"
+      environment:
+        TERM: xterm
+      volumes:
+        - /etc/localtime:/etc/localtime:ro
+        - /mongo_cluster/data1:/data/db
+    mongors1n2:
+      container_name: mongors1n2
+      image: mongo
+      command: mongod --shardsvr --replSet mongors1 --dbpath /data/db --port 27017
+      ports:
+        - 27027:27017
+      expose:
+        - "27017"
+      environment:
+        TERM: xterm
+      volumes:
+        - /etc/localtime:/etc/localtime:ro
+        - /mongo_cluster/data2:/data/db
+    mongors1n3:
+      container_name: mongors1n3
+      image: mongo
+      command: mongod --shardsvr --replSet mongors1 --dbpath /data/db --port 27017
+      ports:
+        - 27037:27017
+      expose:
+        - "27017"
+      environment:
+        TERM: xterm
+      volumes:
+        - /etc/localtime:/etc/localtime:ro
+        - /mongo_cluster/data3:/data/db
+
+      mongors2n1:
+        container_name: mongors2n1
+        image: mongo
+        command: mongod --shardsvr --replSet mongors2 --dbpath /data/db --port 27017
+        ports:
+          - 27047:27017
+        expose:
+          - "27017"
+        environment:
+          TERM: xterm
+        volumes:
+          - /etc/localtime:/etc/localtime:ro
+          - /mongo_cluster/data4:/data/db
+      mongors2n2:
+        container_name: mongors2n2
+        image: mongo
+        command: mongod --shardsvr --replSet mongors2 --dbpath /data/db --port 27017
+        ports:
+          - 27057:27017
+        expose:
+          - "27017"
+        environment:
+          TERM: xterm
+        volumes:
+          - /etc/localtime:/etc/localtime:ro
+          - /mongo_cluster/data5:/data/db
+      mongors2n3:
+        container_name: mongors2n3
+        image: mongo
+        command: mongod --shardsvr --replSet mongors2 --dbpath /data/db --port 27017
+        ports:
+          - 27067:27017
+        expose:
+          - "27017"
+        environment:
+          TERM: xterm
+        volumes:
+          - /etc/localtime:/etc/localtime:ro
+          - /mongo_cluster/data6:/data/db

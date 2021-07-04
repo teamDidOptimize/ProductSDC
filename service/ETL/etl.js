@@ -4,7 +4,7 @@ const db = require('../server.js');
 
 const etlRelated = async () => {
   // let doc = new Product;
-  for (var i = 131; i < 1000; i++) {
+  for (var i = 1; i < 1000; i++) {
     let query = { id: i };
     await Related.find({ current_product_id: query.id })
       .then(async (relatedDoc) => {
